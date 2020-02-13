@@ -1,0 +1,129 @@
+{% extends "base.html" %}
+{% block content %}
+      <div class="content">
+        <div class="container-fluid">
+          <div class="row">
+            <div class="col-lg-3 col-md-6 col-sm-6">
+              <div class="card card-stats">
+                <div class="card-header card-header-warning card-header-icon">
+                  <div class="card-icon">
+                    <i class="material-icons">swap_vert</i>
+                  </div>
+                  <p class="card-category">PH Sensor</p>
+                  <h3 class="card-title">{{ ph_dash }}/14
+                  </h3>
+                </div>
+                <div class="card-footer">
+                  <div class="stats">
+                    <i class="material-icons">update</i>
+                    <a href="#pablo">Just Updated</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-3 col-md-6 col-sm-6">
+              <div class="card card-stats">
+                <div class="card-header card-header-success card-header-icon">
+                  <div class="card-icon">
+                    <i class="material-icons">opacity</i>
+                  </div>
+                  <p class="card-category">Water Temperature</p>
+                  <h3 class="card-title">{{ water_dash }} &#8451;</h3>
+                </div>
+                <div class="card-footer">
+                  <div class="stats">
+                    <i class="material-icons">update</i> Just Updated
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-3 col-md-6 col-sm-6">
+              <div class="card card-stats">
+                <div class="card-header card-header-danger card-header-icon">
+                  <div class="card-icon">
+                    <i class="material-icons">waves</i>
+                  </div>
+                  <p class="card-category">Humidity</p>
+                  <h3 class="card-title">{{ humid_dash }}</h3>
+                </div>
+                <div class="card-footer">
+                  <div class="stats">
+                    <i class="material-icons">update</i> Just Updated
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-3 col-md-6 col-sm-6">
+              <div class="card card-stats">
+                <div class="card-header card-header-info card-header-icon">
+                  <div class="card-icon">
+                    <i class="fa fa-thermometer-empty"></i>
+                  </div>
+                  <p class="card-category">Room Temperature</p>
+                  <h3 class="card-title">{{ room_dash }} &#8451;</h3>
+                </div>
+                <div class="card-footer">
+                  <div class="stats">
+                    <i class="material-icons">update</i> Just Updated
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+              <div class="col-md-4">
+              <div class="card card-chart">
+                <!-- Default switch -->
+                  <div class="card-body">
+                  <h4 class="card-title">Motor Switching</h4>
+                  <div class="togglebutton">
+                    <label>
+                      <input type="checkbox" id="early" class="early" value="{{ swtvalue }}" {{ stateofswt }}></input>
+                        <span class="toggle"></span>
+                        Motor Status
+                    </label>
+                  </div>
+                  <p class="card-category">
+                    <span class="text-success"><i class="fa fa-long-arrow-up"></i> 98% </span> of Time Turn Water Motor On.</p>
+                </div>
+                <div class="card-footer">
+                  <div class="stats">
+                    <i class="material-icons">access_time</i> updated Just Now
+                  </div>
+                </div>
+              </div>
+            </div>
+        </div>
+      </div>
+      <script>
+        console.log($('.early').val())
+        $(document).ready(function() {
+         $('.early').change(function() {
+            var current_status = $('.early').val()
+            var swt
+            if (current_status === 'off'){
+              $('.early').val('on');
+              swt = $('.early').val()
+              $.ajax({
+                url: '{{url_for('index')}}',
+                contentType: 'application/json',
+                dataType: "json",
+                data: JSON.stringify({'swti':swt}),
+                type: 'POST'
+            });
+            }else{
+              $('.early').val('off');
+              swt = $('.early').val()
+              $.ajax({
+                url: '{{url_for('index')}}',
+                contentType: 'application/json',
+                dataType: "json",
+                data: JSON.stringify({'swti':swt}),
+                type: 'POST'
+            });
+            }
+            console.log($('.early').val())
+          });
+         });
+      </script>
+
+{% endblock %}

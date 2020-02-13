@@ -1,0 +1,80 @@
+{% extends "base.html" %}
+{% block content %}
+      <div class="content">
+        <div class="container-fluid">
+          <div class="row">
+            <div class="col-md-12">
+              <div class="card">
+                <div class="card-header card-header-primary">
+                  <h4 class="card-title ">Sensor Data</h4>
+                  <p class="card-category">Automatically Recorded with Digital Sensor</p>
+                </div>
+                <div class="card-body">
+                  <div class="table-responsive">
+                    <table class="table">
+                      <thead class=" text-primary">
+                        <th align="center">ID</th>
+                        <th align="center">Date and Time</th>
+                        <th align="center">Ph (pouvoir hydrogène)</th>
+                        <th align="center">Water Temperature </br> in &#8451;</th>
+                        <th align="center">Humidity</th>
+                        <th align="center">Room Temperature </br> in &#8451;</th>
+                      </thead>
+                      <tbody>
+			{% for row in dataut %}
+                        <tr>
+                          <td align="center">{{ row.id }}</td>
+                          <td align="center">{{ row.datentime }}</td>
+                          <td align="center">{{ row.ph }}</td>
+                          <td align="center">{{ row.water_temp }}</td>
+                          <td align="center">{{ row.humidity }}</td>
+                          <td class="text-primary">{{ row.room_temp }}</td>
+                        </tr>
+			{% endfor %}
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-12">
+              <div class="card">
+                <div class="card-header card-header-primary">
+                  <h4 class="card-title ">Recorded Data</h4>
+                  <p class="card-category">Manually Recorded with Observations</p>
+                </div>
+                <div class="card-body">
+                  <div class="table-responsive">
+                    <table class="table">
+                      <thead class=" text-primary">
+                        <th align="center">ID</th>
+                        <th align="center">Date and Time</th>
+                        <th align="center">Ph (pouvoir hydrogene)</br> in PPM </br> (Manual Reading)</th>
+                        <th align="center">EC </br> (Electrical Conductivity)</th>
+                        <th align="center">TDS </br> (Total Dissolved Solvent)</th>
+                        <th align="center">Plant </br> Height in Cms</th>
+                        <th align="center">Temperature </br> in &#8451;</th>
+                      </thead>
+                      <tbody>
+                        {% for row in data %}
+                        <tr>
+                          <td align="center">{{ row.id }}</td>
+                          <td align="center">{{ row.datentime }}</td>
+                          <td align="center">{{ row.ph_observation }}</td>
+                          <td align="center">{{ row.ec_observation }}</td>
+                          <td align="center">{{ row.tds_observation }}</td>
+                          <td align="center">{{ row.plants_height }}</td>
+                          <td class="text-primary">{{ row.temperature }}</td>
+                        </tr>
+                        {% endfor %}
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+{% endblock %}

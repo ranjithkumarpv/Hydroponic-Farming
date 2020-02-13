@@ -1,0 +1,84 @@
+{% extends "base.html" %}
+{% block content %}
+      <div class="content">
+        <div class="container-fluid">
+          <div class="row">
+            <div class="col-md-12">
+              <div class="card">
+                <div class="card-header card-header-primary">
+                  <h4 class="card-title">Record Your Observations</h4>
+                  <p class="card-category">Record Your Observations with Floating Values</p>
+                </div>
+                <div class="card-body">
+                  <form action="{{url_for('observations')}}" method="post">
+                    <div class="row">
+                      <div class="col-md-5">
+                        <div class="form-group">
+                          <label class="bmd-label-floating">pH (pouvoir hydrogène)</label>
+                          <input type="text" name="ph" class="form-control">
+                        </div>
+                      </div>
+                      <div class="col-md-3">
+                        <div class="form-group">
+                          <label class="bmd-label-floating">EC (Electrical Conductivity) </label>
+                          <input type="text" name="ec" class="form-control">
+                        </div>
+                      </div>
+                      <div class="col-md-4">
+                        <div class="form-group">
+                          <label class="bmd-label-floating">TDS (Total Dissolved Solvents) </label>
+                          <input type="text" name="tds" class="form-control">
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-6">
+                        <div class="form-group">
+                          <label class="bmd-label-floating">Plant Height in cms</label>
+                          <input type="text" name="plantht" class="form-control">
+                        </div>
+                      </div>
+                      <div class="col-md-6">
+                        <div class="form-group">
+                          <label class="bmd-label-floating">Temperature in &#8451;</label>
+                          <input type="text" name="tempinc" class="form-control">
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-4">
+                        <div class="form-group">
+                          <label class="bmd-label-floating">Date</label>
+                          <input type="text" id="date" name="date" class="form-control" readonly>
+                        </div>
+                      </div>
+                      <div class="col-md-4">
+                        <div class="form-group">
+                          <label class="bmd-label-floating">Time</label>
+                          <input type="text" id="time" name="time" class="form-control" readonly>
+                        </div>
+                      </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary pull-right">Update Observations</button>
+                    <div class="clearfix"></div>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <script type="text/javascript">
+        var today = new Date();
+        var dd = today.getDate();
+        var mm = today.getMonth() + 1; //January is 0!
+        var yyyy = today.getFullYear();
+        var datee = dd + '/' + mm + '/' + yyyy;
+        var HH = today.getHours();
+        var MM = today.getMinutes();
+        var SS = today.getSeconds();
+        var timee = HH + ':' + MM + ':' + SS;
+        document.getElementById('date').value = datee;
+        document.getElementById('time').value = timee;
+      </script>
+{% endblock %}
