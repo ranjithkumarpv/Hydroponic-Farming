@@ -6,17 +6,3 @@ In developing countries like India people are facing lot of issues in the field 
 
 
 
-III.	PROPOSED SYSTEM
-
-
-
-                                                                
-
-                                                                          
-
-
-
-
-s
-
-Figure1. Proposed system overview
